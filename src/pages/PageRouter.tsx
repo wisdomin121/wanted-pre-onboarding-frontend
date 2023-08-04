@@ -1,7 +1,14 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { PAGE_URL } from "../configs/path";
+
+// components
 import { CommonLayout } from "components";
+
+// configs
+import { PAGE_URL } from "configs/path";
+
+// element
+import * as Switch from "pages";
 
 const PageRouter = () => {
   const location = useLocation();
@@ -9,7 +16,10 @@ const PageRouter = () => {
   return (
     <>
       <Routes location={location} key={location.pathname}>
-        <Route path={PAGE_URL.Main} element={<CommonLayout />}></Route>
+        <Route path={PAGE_URL.Main} element={<CommonLayout />}>
+          <Route index element={<Switch.MainPage />} />
+          <Route path={PAGE_URL.SignUp} element={<Switch.SignUpPage />} />
+        </Route>
       </Routes>
     </>
   );

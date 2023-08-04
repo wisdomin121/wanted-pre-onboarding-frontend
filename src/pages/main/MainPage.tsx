@@ -1,0 +1,30 @@
+import React from "react";
+import styled from "styled-components";
+
+// components
+import { Button } from "components";
+import { useNavigate } from "react-router-dom";
+
+const MainPage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <MainWrapper>
+      <Button text="로그인" _onClick={() => {}} />
+      <Button
+        text="회원가입"
+        _onClick={() => {
+          navigate("signup");
+        }}
+      />
+    </MainWrapper>
+  );
+};
+
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export default MainPage;
