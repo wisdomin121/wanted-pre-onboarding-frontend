@@ -19,6 +19,8 @@ const PageRouter = () => {
         <Route path={PAGE_URL.Main} element={<CommonLayout />}>
           <Route index element={<Switch.MainPage />} />
           <Route path={PAGE_URL.SignUp} element={<Switch.SignUpPage />} />
+          <Route path={PAGE_URL.SignIn} element={<Switch.SignInPage />} />
+          <Route path={PAGE_URL.Todo} element={<Switch.TodoPage />} />
         </Route>
       </Routes>
     </>
