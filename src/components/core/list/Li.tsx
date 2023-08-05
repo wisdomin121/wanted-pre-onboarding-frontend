@@ -1,17 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../button";
+import { Input } from "../input";
 
 interface ILi {
   text: string;
   _checked: boolean;
+  isEdit: boolean;
   _onChange: (e: {
     target: { checked: boolean | ((prevState: boolean) => boolean) };
   }) => void;
+  editTodo: string;
+  setEditTodo: React.Dispatch<React.SetStateAction<string>>;
+  editOnClick: () => void;
   deleteOnClick: () => void;
+  submitOnClick: () => void;
+  cancelOnClick: () => void;
 }
 
-const LiComponent = ({ text, _checked, _onChange, deleteOnClick }: ILi) => {
+const LiComponent = ({
+  text,
+  _checked,
+  isEdit,
+  _onChange,
+  editTodo,
+  setEditTodo,
+  editOnClick,
+  deleteOnClick,
+  submitOnClick,
+  cancelOnClick,
+}: ILi) => {
   return (
     <ListWrapper>
       <CheckBoxWrapper
@@ -20,24 +38,54 @@ const LiComponent = ({ text, _checked, _onChange, deleteOnClick }: ILi) => {
         onChange={_onChange}
       />
 
-      {text}
+      {isEdit ? (
+        <Input
+          dataTestid="modify-input"
+          _placeholder="어떤 내용으로 수정하시겠어요 ?"
+          _width="160px"
+          _height="33px"
+          _value={editTodo}
+          setValue={setEditTodo}
+        />
+      ) : (
+        text
+      )}
 
-      <ButtonWrapper>
-        <Button
-          dataTestid="new-todo-input"
-          text="수정"
-          _width="fit-content"
-          _height="fit-content"
-          _onClick={() => {}}
-        />
-        <Button
-          dataTestid="new-todo-add-button"
-          text="삭제"
-          _width="fit-content"
-          _height="fit-content"
-          _onClick={deleteOnClick}
-        />
-      </ButtonWrapper>
+      {isEdit ? (
+        <ButtonWrapper>
+          <Button
+            dataTestid="submit-button"
+            text="제출"
+            _width="fit-content"
+            _height="fit-content"
+            _onClick={submitOnClick}
+          />
+          <Button
+            dataTestid="cancel-button"
+            text="취소"
+            _width="fit-content"
+            _height="fit-content"
+            _onClick={cancelOnClick}
+          />
+        </ButtonWrapper>
+      ) : (
+        <ButtonWrapper>
+          <Button
+            dataTestid="modify-button"
+            text="수정"
+            _width="fit-content"
+            _height="fit-content"
+            _onClick={editOnClick}
+          />
+          <Button
+            dataTestid="delete-button"
+            text="삭제"
+            _width="fit-content"
+            _height="fit-content"
+            _onClick={deleteOnClick}
+          />
+        </ButtonWrapper>
+      )}
     </ListWrapper>
   );
 };

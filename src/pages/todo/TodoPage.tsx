@@ -16,6 +16,8 @@ const TodoPage = () => {
   const [todo, setTodo] = useState<string>("");
   const [list, setList] = useState<any[]>([]);
   const [checkedId, setCheckedId] = useState<number[]>([]);
+  const [nowEditId, setNowEditId] = useState<number | undefined>();
+  const [editTodo, setEditTodo] = useState<string>("");
 
   // access_token 없으면 리다이렉트
   useEffect(() => {
@@ -59,6 +61,7 @@ const TodoPage = () => {
                   key={i}
                   text={v.todo}
                   _checked={checkedId.includes(v.id)}
+                  isEdit={nowEditId != null && nowEditId === v.id}
                   _onChange={(e) => {
                     updateTodo({
                       id: v.id,
@@ -68,8 +71,27 @@ const TodoPage = () => {
                       setCheckedId,
                     });
                   }}
+                  editTodo={editTodo}
+                  setEditTodo={setEditTodo}
+                  editOnClick={() => {
+                    setEditTodo(v.todo);
+                    setNowEditId(v.id);
+                  }}
                   deleteOnClick={() => {
                     deleteTodo({ id: v.id, list, setList });
+                  }}
+                  submitOnClick={() => {
+                    updateTodo({
+                      id: v.id,
+                      todo: editTodo,
+                      isCompleted: v.isCompleted,
+                      list,
+                      setList,
+                    });
+                    setNowEditId(undefined);
+                  }}
+                  cancelOnClick={() => {
+                    setNowEditId(undefined);
                   }}
                 />
               );
