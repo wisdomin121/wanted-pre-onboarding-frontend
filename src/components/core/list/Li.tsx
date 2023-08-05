@@ -8,9 +8,10 @@ interface ILi {
   _onChange: (e: {
     target: { checked: boolean | ((prevState: boolean) => boolean) };
   }) => void;
+  deleteOnClick: () => void;
 }
 
-const LiComponent = ({ text, _checked, _onChange }: ILi) => {
+const LiComponent = ({ text, _checked, _onChange, deleteOnClick }: ILi) => {
   return (
     <ListWrapper>
       <CheckBoxWrapper
@@ -34,7 +35,7 @@ const LiComponent = ({ text, _checked, _onChange }: ILi) => {
           text="삭제"
           _width="fit-content"
           _height="fit-content"
-          _onClick={() => {}}
+          _onClick={deleteOnClick}
         />
       </ButtonWrapper>
     </ListWrapper>

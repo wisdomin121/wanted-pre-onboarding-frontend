@@ -8,6 +8,7 @@ import { Button, Input, Li } from "components";
 // apis
 import { getTodos, createTodo } from "apis";
 import { updateTodo } from "apis/put";
+import { deleteTodo } from "apis/delete";
 
 const TodoPage = () => {
   const navigate = useNavigate();
@@ -28,8 +29,6 @@ const TodoPage = () => {
   useEffect(() => {
     getTodos(setList, setCheckedId);
   }, []);
-
-  console.log(checkedId);
 
   return (
     <TodoWrapper>
@@ -68,6 +67,9 @@ const TodoPage = () => {
                       checkedId,
                       setCheckedId,
                     });
+                  }}
+                  deleteOnClick={() => {
+                    deleteTodo({ id: v.id, list, setList });
                   }}
                 />
               );
