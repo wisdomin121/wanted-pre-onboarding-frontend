@@ -7,22 +7,29 @@ import { Button, Input, Li } from "components";
 
 // apis
 import { getTodos, createTodo } from "apis";
+import { updateTodo } from "apis/put";
 
 const TodoPage = () => {
   const navigate = useNavigate();
 
   const [todo, setTodo] = useState<string>("");
   const [list, setList] = useState<any[]>([]);
+  const [checkedId, setCheckedId] = useState<number[]>([]);
 
+  // access_token 없으면 리다이렉트
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
       navigate("/signin");
     }
   }, [navigate]);
 
+  // 페이지 로드시 저장되어 있는 투두리스트 불러오기
+  // 이미 체크 되어 있는 투두 checkedId로 분리
   useEffect(() => {
-    getTodos(setList);
+    getTodos(setList, setCheckedId);
   }, []);
+
+  console.log(checkedId);
 
   return (
     <TodoWrapper>
@@ -48,7 +55,22 @@ const TodoPage = () => {
         <TodoScrollWrapper>
           {list.length > 0 &&
             list.map((v: any, i: number) => {
-              return <Li key={i} text={v.todo} />;
+              return (
+                <Li
+                  key={i}
+                  text={v.todo}
+                  _checked={checkedId.includes(v.id)}
+                  _onChange={(e) => {
+                    updateTodo({
+                      id: v.id,
+                      todo: v.todo,
+                      isCompleted: !v.isCompleted,
+                      checkedId,
+                      setCheckedId,
+                    });
+                  }}
+                />
+              );
             })}
         </TodoScrollWrapper>
       </TodoListWrapper>
@@ -92,7 +114,7 @@ const TodoScrollWrapper = styled.div`
   width: 100%;
   height: 100%;
 
-  overflow-y: auto;
+  overflow: auto;
 `;
 
 export default TodoPage;

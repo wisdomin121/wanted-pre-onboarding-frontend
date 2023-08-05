@@ -3,12 +3,20 @@ import styled from "styled-components";
 
 interface ILi {
   text: string;
+  _checked: boolean;
+  _onChange: (e: {
+    target: { checked: boolean | ((prevState: boolean) => boolean) };
+  }) => void;
 }
 
-const LiComponent = ({ text }: ILi) => {
+const LiComponent = ({ text, _checked, _onChange }: ILi) => {
   return (
     <ListWrapper>
-      <CheckBoxWrapper type="checkbox" />
+      <CheckBoxWrapper
+        type="checkbox"
+        checked={_checked}
+        onChange={_onChange}
+      />
 
       {text}
     </ListWrapper>
