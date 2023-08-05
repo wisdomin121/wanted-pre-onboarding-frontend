@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../button";
 
 interface ILi {
   text: string;
@@ -19,6 +20,23 @@ const LiComponent = ({ text, _checked, _onChange }: ILi) => {
       />
 
       {text}
+
+      <ButtonWrapper>
+        <Button
+          dataTestid="new-todo-input"
+          text="수정"
+          _width="fit-content"
+          _height="fit-content"
+          _onClick={() => {}}
+        />
+        <Button
+          dataTestid="new-todo-add-button"
+          text="삭제"
+          _width="fit-content"
+          _height="fit-content"
+          _onClick={() => {}}
+        />
+      </ButtonWrapper>
     </ListWrapper>
   );
 };
@@ -57,6 +75,13 @@ const CheckBoxWrapper = styled.input`
     background-position: center center;
     background-repeat: no-repeat;
   }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 4px;
+
+  margin: 0 0 0 auto;
 `;
 
 export default LiComponent;
