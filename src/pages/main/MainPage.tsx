@@ -10,7 +10,12 @@ const MainPage = () => {
 
   return (
     <MainWrapper>
-      <Button text="로그인" _onClick={() => {}} />
+      <Button
+        text="로그인"
+        _onClick={() => {
+          navigate("signin");
+        }}
+      />
       <Button
         text="회원가입"
         _onClick={() => {
