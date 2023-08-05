@@ -31,10 +31,11 @@ const CheckBoxWrapper = styled.input`
   appearance: none;
   cursor: pointer;
 
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
-  border-radius: 8px;
+  border-radius: 10px;
+
   background-color: #fffdfa;
   border: 1px solid #57a775;
 

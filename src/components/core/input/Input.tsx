@@ -10,6 +10,7 @@ interface IInput {
   _placeholder: string;
   _value: string;
   setValue: Dispatch<SetStateAction<string>>;
+  _width?: string;
 }
 
 const InputComponent = ({
@@ -18,6 +19,7 @@ const InputComponent = ({
   _value,
   setValue,
   _placeholder,
+  _width = "385px",
 }: IInput) => {
   const handleChange = (e: {
     target: { value: React.SetStateAction<string> };
@@ -31,17 +33,18 @@ const InputComponent = ({
       type={_type}
       placeholder={_placeholder}
       value={_value}
+      _width={_width}
       onChange={handleChange}
-    ></InputWrapper>
+    />
   );
 };
 
-const InputWrapper = styled.input`
+const InputWrapper = styled.input<{ _width: string }>`
   color: #333835;
   font-size: 17px;
   font-weight: 400;
 
-  width: 385px;
+  width: ${({ _width }) => `${_width}`};
   height: 55px;
   padding: 0 20px;
 

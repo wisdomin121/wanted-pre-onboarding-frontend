@@ -5,6 +5,7 @@ interface IButton {
   dataTestid?: string;
   text: string;
   _disabled?: boolean;
+  _width?: string;
   _onClick: () => void;
 }
 
@@ -12,12 +13,14 @@ const ButtonComponent = ({
   dataTestid,
   text,
   _disabled = false,
+  _width = "425px",
   _onClick,
 }: IButton) => {
   return (
     <ButtonWrapper
       data-testid={dataTestid}
       disabled={_disabled}
+      _width={_width}
       onClick={_onClick}
     >
       {text}
@@ -25,7 +28,7 @@ const ButtonComponent = ({
   );
 };
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.button<{ _width: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +40,7 @@ const ButtonWrapper = styled.button`
   font-size: 17px;
   font-weight: 400;
 
-  width: 425px;
+  ${({ _width }) => `width: ${_width};`}
   height: 55px;
 
   cursor: pointer;
