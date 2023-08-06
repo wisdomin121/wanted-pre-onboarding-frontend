@@ -22,8 +22,8 @@ const ButtonComponent = ({
     <ButtonWrapper
       data-testid={dataTestid}
       disabled={_disabled}
-      _width={_width}
-      _height={_height}
+      $_width={_width}
+      $_height={_height}
       onClick={_onClick}
     >
       {text}
@@ -31,7 +31,7 @@ const ButtonComponent = ({
   );
 };
 
-const ButtonWrapper = styled.button<{ _width: string; _height: string }>`
+const ButtonWrapper = styled.button<{ $_width: string; $_height: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,8 +43,8 @@ const ButtonWrapper = styled.button<{ _width: string; _height: string }>`
   font-size: 17px;
   font-weight: 400;
 
-  ${({ _width }) => `width: ${_width};`}
-  height: ${({ _height }) => `${_height}`};
+  width: ${({ $_width }) => `${$_width}`};
+  height: ${({ $_height }) => `${$_height}`};
 
   cursor: pointer;
   border: 0.5px solid #a3f4c1;

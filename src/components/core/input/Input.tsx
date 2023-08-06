@@ -35,20 +35,20 @@ const InputComponent = ({
       type={_type}
       placeholder={_placeholder}
       value={_value}
-      _width={_width}
-      _height={_height}
+      $_width={_width}
+      $_height={_height}
       onChange={handleChange}
     />
   );
 };
 
-const InputWrapper = styled.input<{ _width: string; _height: string }>`
+const InputWrapper = styled.input<{ $_width: string; $_height: string }>`
   color: #333835;
   font-size: 17px;
   font-weight: 400;
 
-  width: ${({ _width }) => `${_width}`};
-  height: ${({ _height }) => `${_height}`};
+  width: ${({ $_width }) => `${$_width}`};
+  height: ${({ $_height }) => `${$_height}`};
   padding: 0 20px;
 
   border-radius: 20px;
