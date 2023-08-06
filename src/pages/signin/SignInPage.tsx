@@ -1,5 +1,7 @@
-import { SignUpInLayout } from "components";
 import React from "react";
+
+// components
+import { SignUpInLayout } from "components";
 
 const SignInPage = () => {
   return <SignUpInLayout isSignUp={false} />;

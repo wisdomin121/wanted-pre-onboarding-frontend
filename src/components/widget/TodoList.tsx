@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // components
-import { Li } from "components";
+import { Li, TodoListNone } from "components";
 
 // apis
 import { updateTodo, deleteTodo } from "apis";
@@ -17,7 +17,7 @@ const TodoList = ({ list, setList, checkedId, setCheckedId }: ICheckTodo) => {
   return (
     <TodoListWrapper>
       <TodoScrollWrapper>
-        {list.length > 0 &&
+        {list.length > 0 ? (
           list.map((v: any, i: number) => {
             return (
               <Li
@@ -58,7 +58,10 @@ const TodoList = ({ list, setList, checkedId, setCheckedId }: ICheckTodo) => {
                 }}
               />
             );
-          })}
+          })
+        ) : (
+          <TodoListNone />
+        )}
       </TodoScrollWrapper>
     </TodoListWrapper>
   );
