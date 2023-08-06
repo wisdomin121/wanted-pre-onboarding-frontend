@@ -5,6 +5,7 @@ import { ILiTextInput } from "types";
 
 // components
 import { Input } from "components";
+import styled from "styled-components";
 
 const LiTextInput = ({ text, isEdit, editTodo, setEditTodo }: ILiTextInput) => {
   return isEdit ? (
@@ -17,8 +18,13 @@ const LiTextInput = ({ text, isEdit, editTodo, setEditTodo }: ILiTextInput) => {
       setValue={setEditTodo}
     />
   ) : (
-    <>{text}</>
+    <TextWrapper>{text}</TextWrapper>
   );
 };
+
+const TextWrapper = styled.p`
+  width: 180px;
+  overflow: auto;
+`;
 
 export default LiTextInput;

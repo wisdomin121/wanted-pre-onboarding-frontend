@@ -23,7 +23,7 @@ const TodoInput = ({ todo, setTodo, list, setList }: ICreateTodo) => {
 
       <Button
         dataTestid="new-todo-add-button"
-        text="등록하기"
+        text="추가"
         _width="125px"
         _onClick={() => {
           createTodo({ todo, setTodo, list, setList });
