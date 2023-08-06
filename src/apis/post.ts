@@ -22,7 +22,7 @@ export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
     .catch((err) => console.error(err));
 };
 
-export const handleSignUp = ({ email, password }: ISignUpIn) => {
+export const handleSignUp = ({ email, password, setErrorText }: ISignUpIn) => {
   axios
     .post(
       "/auth/signup",
@@ -32,10 +32,10 @@ export const handleSignUp = ({ email, password }: ISignUpIn) => {
     .then(() => {
       window.location.href = "/signin";
     })
-    .catch((err) => console.error(err));
+    .catch((err) => setErrorText(err.response.data.message));
 };
 
-export const handleSignIn = ({ email, password }: ISignUpIn) => {
+export const handleSignIn = ({ email, password, setErrorText }: ISignUpIn) => {
   axios
     .post(
       "/auth/signin",
@@ -47,6 +47,6 @@ export const handleSignIn = ({ email, password }: ISignUpIn) => {
       window.location.href = "/todo";
     })
     .catch((err) => {
-      console.error(err);
+      setErrorText(err.response.data.message);
     });
 };

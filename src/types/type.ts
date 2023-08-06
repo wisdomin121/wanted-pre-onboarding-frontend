@@ -41,6 +41,7 @@ export interface ICheckTodo {
 export interface ISignUpIn {
   email: string;
   password: string;
+  setErrorText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface IGetTodos {
