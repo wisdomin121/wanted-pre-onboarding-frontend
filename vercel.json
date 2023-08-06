@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "https://www.pre-onboarding-selection-task.shop/:path*"
+    }
+  ]
+}
