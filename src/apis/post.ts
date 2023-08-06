@@ -1,15 +1,9 @@
 import axios from "axios";
 
-// apis
-import { getTodos } from "./get";
+// types
+import { ICreateTodo } from "types";
 
-interface ICreateTodo {
-  todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>;
-  setList: React.Dispatch<React.SetStateAction<any[]>>;
-}
-
-export const createTodo = ({ todo, setTodo, setList }: ICreateTodo) => {
+export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
   axios
     .post(
       "/todos",
@@ -21,9 +15,9 @@ export const createTodo = ({ todo, setTodo, setList }: ICreateTodo) => {
         },
       }
     )
-    .then(() => {
+    .then((res) => {
       setTodo("");
-      getTodos(setList);
+      setList([...list, res.data]);
     })
     .catch((err) => console.error(err));
 };

@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // components
-import { Button, Input, Li } from "components";
+import { Li, TodoInput } from "components";
 
 // apis
-import { getTodos, createTodo } from "apis";
+import { getTodos } from "apis";
 import { updateTodo } from "apis/put";
 import { deleteTodo } from "apis/delete";
 
@@ -34,23 +34,7 @@ const TodoPage = () => {
 
   return (
     <TodoWrapper>
-      <TodoInputWrapper>
-        <Input
-          dataTestid="new-todo-input"
-          _placeholder="오늘의 할 일을 적어주세요"
-          _value={todo}
-          setValue={setTodo}
-          _width="100%"
-        />
-        <Button
-          dataTestid="new-todo-add-button"
-          text="등록하기"
-          _width="125px"
-          _onClick={() => {
-            createTodo({ todo, setTodo, setList });
-          }}
-        />
-      </TodoInputWrapper>
+      <TodoInput todo={todo} setTodo={setTodo} list={list} setList={setList} />
 
       <TodoListWrapper>
         <TodoScrollWrapper>
@@ -109,13 +93,6 @@ const TodoWrapper = styled.div`
   gap: 4px;
 
   width: 425px;
-`;
-
-const TodoInputWrapper = styled.div`
-  display: flex;
-  gap: 4px;
-
-  width: 100%;
 `;
 
 const TodoListWrapper = styled.div`
