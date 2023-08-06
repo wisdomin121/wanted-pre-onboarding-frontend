@@ -46,7 +46,7 @@ const TodoPage = () => {
                   text={v.todo}
                   _checked={checkedId.includes(v.id)}
                   isEdit={nowEditId != null && nowEditId === v.id}
-                  _onChange={(e) => {
+                  _onChange={() => {
                     updateTodo({
                       id: v.id,
                       todo: v.todo,
