@@ -31,3 +31,10 @@ export type ILiTextInput = Pick<
 >;
 
 export type ILiCheckBox = Pick<ILi, "_checked" | "_onChange">;
+
+export interface ICheckTodo {
+  list: any[];
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
+  checkedId: number[];
+  setCheckedId: React.Dispatch<React.SetStateAction<number[]>>;
+}

@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // components
-import { Li, TodoInput } from "components";
+import { TodoInput, TodoList } from "components";
 
 // apis
 import { getTodos } from "apis";
-import { updateTodo } from "apis/put";
-import { deleteTodo } from "apis/delete";
 
 const TodoPage = () => {
   const navigate = useNavigate();
@@ -16,8 +14,6 @@ const TodoPage = () => {
   const [todo, setTodo] = useState<string>("");
   const [list, setList] = useState<any[]>([]);
   const [checkedId, setCheckedId] = useState<number[]>([]);
-  const [nowEditId, setNowEditId] = useState<number | undefined>();
-  const [editTodo, setEditTodo] = useState<string>("");
 
   // access_token 없으면 리다이렉트
   useEffect(() => {
@@ -36,52 +32,12 @@ const TodoPage = () => {
     <TodoWrapper>
       <TodoInput todo={todo} setTodo={setTodo} list={list} setList={setList} />
 
-      <TodoListWrapper>
-        <TodoScrollWrapper>
-          {list.length > 0 &&
-            list.map((v: any, i: number) => {
-              return (
-                <Li
-                  key={i}
-                  text={v.todo}
-                  _checked={checkedId.includes(v.id)}
-                  isEdit={nowEditId != null && nowEditId === v.id}
-                  _onChange={() => {
-                    updateTodo({
-                      id: v.id,
-                      todo: v.todo,
-                      isCompleted: !v.isCompleted,
-                      checkedId,
-                      setCheckedId,
-                    });
-                  }}
-                  editTodo={editTodo}
-                  setEditTodo={setEditTodo}
-                  editOnClick={() => {
-                    setEditTodo(v.todo);
-                    setNowEditId(v.id);
-                  }}
-                  deleteOnClick={() => {
-                    deleteTodo({ id: v.id, list, setList });
-                  }}
-                  submitOnClick={() => {
-                    updateTodo({
-                      id: v.id,
-                      todo: editTodo,
-                      isCompleted: v.isCompleted,
-                      list,
-                      setList,
-                    });
-                    setNowEditId(undefined);
-                  }}
-                  cancelOnClick={() => {
-                    setNowEditId(undefined);
-                  }}
-                />
-              );
-            })}
-        </TodoScrollWrapper>
-      </TodoListWrapper>
+      <TodoList
+        list={list}
+        setList={setList}
+        checkedId={checkedId}
+        setCheckedId={setCheckedId}
+      />
     </TodoWrapper>
   );
 };
@@ -93,29 +49,6 @@ const TodoWrapper = styled.div`
   gap: 4px;
 
   width: 425px;
-`;
-
-const TodoListWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: calc(100% - 60px);
-  height: 400px;
-  padding: 20px 30px;
-
-  border: 0.5px solid #cccac8;
-  border-radius: 20px;
-`;
-
-const TodoScrollWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: auto;
 `;
 
 export default TodoPage;
