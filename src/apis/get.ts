@@ -8,6 +8,7 @@ export const getTodos = ({ setList, setCheckedId }: IGetTodos) => {
     .get("/todos", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Access-Control-Allow-Origin": "*",
       },
     })
     .then((res) => {

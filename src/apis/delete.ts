@@ -8,6 +8,7 @@ export const deleteTodo = ({ id, list, setList }: IDeleteTodo) => {
     .delete(`/todos/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Access-Control-Allow-Origin": "*",
       },
     })
     .then(() => {
