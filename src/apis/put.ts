@@ -3,6 +3,9 @@ import axios from "axios";
 // apis
 import { IUpdateTodo } from "types";
 
+// configs
+import { API_URL } from "configs/const";
+
 export const updateTodo = async ({
   id,
   todo,
@@ -14,7 +17,7 @@ export const updateTodo = async ({
 }: IUpdateTodo) => {
   await axios
     .put(
-      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+      `${API_URL}/todos/${id}`,
       { todo, isCompleted },
       {
         headers: {

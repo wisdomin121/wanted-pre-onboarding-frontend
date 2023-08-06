@@ -3,6 +3,9 @@ import axios from "axios";
 // types
 import { ICreateTodo, ISignUpIn } from "types";
 
+// configs
+import { API_URL } from "configs/const";
+
 export const createTodo = async ({
   todo,
   setTodo,
@@ -11,7 +14,7 @@ export const createTodo = async ({
 }: ICreateTodo) => {
   await axios
     .post(
-      "https://www.pre-onboarding-selection-task.shop/todos",
+      `${API_URL}/todos`,
       { todo },
       {
         headers: {
@@ -35,7 +38,7 @@ export const handleSignUp = async ({
 }: ISignUpIn) => {
   await axios
     .post(
-      "https://www.pre-onboarding-selection-task.shop/auth/signup",
+      `${API_URL}/auth/signup`,
       { email, password },
       {
         headers: {
@@ -57,7 +60,7 @@ export const handleSignIn = async ({
 }: ISignUpIn) => {
   await axios
     .post(
-      "https://www.pre-onboarding-selection-task.shop/auth/signin",
+      `${API_URL}/auth/signin`,
       { email, password },
       {
         headers: {

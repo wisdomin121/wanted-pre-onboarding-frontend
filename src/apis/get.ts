@@ -3,9 +3,12 @@ import axios from "axios";
 // apis
 import { IGetTodos } from "types";
 
+// configs
+import { API_URL } from "configs/const";
+
 export const getTodos = async ({ setList, setCheckedId }: IGetTodos) => {
   await axios
-    .get("https://www.pre-onboarding-selection-task.shop/todos", {
+    .get(`${API_URL}/todos`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         "Access-Control-Allow-Origin": "*",
