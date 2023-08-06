@@ -5,8 +5,7 @@ import styled from "styled-components";
 import { Li } from "components";
 
 // apis
-import { updateTodo } from "apis/put";
-import { deleteTodo } from "apis/delete";
+import { updateTodo, deleteTodo } from "apis";
 
 // type
 import { ICheckTodo } from "types";
