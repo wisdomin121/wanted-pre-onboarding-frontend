@@ -14,7 +14,7 @@ export const updateTodo = ({
 }: IUpdateTodo) => {
   axios
     .put(
-      `/todos/${id}`,
+      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
       { todo, isCompleted },
       {
         headers: {

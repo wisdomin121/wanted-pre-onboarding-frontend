@@ -5,7 +5,7 @@ import { IGetTodos } from "types";
 
 export const getTodos = ({ setList, setCheckedId }: IGetTodos) => {
   axios
-    .get("/todos", {
+    .get("https://www.pre-onboarding-selection-task.shop/todos", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         "Access-Control-Allow-Origin": "*",

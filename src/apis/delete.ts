@@ -5,7 +5,7 @@ import { IDeleteTodo } from "types";
 
 export const deleteTodo = ({ id, list, setList }: IDeleteTodo) => {
   axios
-    .delete(`/todos/${id}`, {
+    .delete(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         "Access-Control-Allow-Origin": "*",

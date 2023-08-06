@@ -6,7 +6,7 @@ import { ICreateTodo, ISignUpIn } from "types";
 export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
   axios
     .post(
-      "/todos",
+      "https://www.pre-onboarding-selection-task.shop/todos",
       { todo },
       {
         headers: {
@@ -26,7 +26,7 @@ export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
 export const handleSignUp = ({ email, password, setErrorText }: ISignUpIn) => {
   axios
     .post(
-      "/auth/signup",
+      "https://www.pre-onboarding-selection-task.shop/auth/signup",
       { email, password },
       {
         headers: {
@@ -44,7 +44,7 @@ export const handleSignUp = ({ email, password, setErrorText }: ISignUpIn) => {
 export const handleSignIn = ({ email, password, setErrorText }: ISignUpIn) => {
   axios
     .post(
-      "/auth/signin",
+      "https://www.pre-onboarding-selection-task.shop/auth/signin",
       { email, password },
       {
         headers: {
