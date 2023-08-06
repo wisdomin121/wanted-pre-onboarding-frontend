@@ -1,3 +1,7 @@
+export interface ISign {
+  isSignUp?: boolean;
+}
+
 // Li 컴포넌트 관련
 export interface ILi {
   text: string;
