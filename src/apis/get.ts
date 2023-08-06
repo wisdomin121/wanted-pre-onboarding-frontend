@@ -3,8 +3,8 @@ import axios from "axios";
 // apis
 import { IGetTodos } from "types";
 
-export const getTodos = ({ setList, setCheckedId }: IGetTodos) => {
-  axios
+export const getTodos = async ({ setList, setCheckedId }: IGetTodos) => {
+  await axios
     .get("https://www.pre-onboarding-selection-task.shop/todos", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,

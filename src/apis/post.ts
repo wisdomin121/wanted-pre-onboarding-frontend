@@ -3,8 +3,13 @@ import axios from "axios";
 // types
 import { ICreateTodo, ISignUpIn } from "types";
 
-export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
-  axios
+export const createTodo = async ({
+  todo,
+  setTodo,
+  list,
+  setList,
+}: ICreateTodo) => {
+  await axios
     .post(
       "https://www.pre-onboarding-selection-task.shop/todos",
       { todo },
@@ -23,8 +28,12 @@ export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
     .catch((err) => console.error(err));
 };
 
-export const handleSignUp = ({ email, password, setErrorText }: ISignUpIn) => {
-  axios
+export const handleSignUp = async ({
+  email,
+  password,
+  setErrorText,
+}: ISignUpIn) => {
+  await axios
     .post(
       "https://www.pre-onboarding-selection-task.shop/auth/signup",
       { email, password },
@@ -41,8 +50,12 @@ export const handleSignUp = ({ email, password, setErrorText }: ISignUpIn) => {
     .catch((err) => setErrorText(err.response.data.message));
 };
 
-export const handleSignIn = ({ email, password, setErrorText }: ISignUpIn) => {
-  axios
+export const handleSignIn = async ({
+  email,
+  password,
+  setErrorText,
+}: ISignUpIn) => {
+  await axios
     .post(
       "https://www.pre-onboarding-selection-task.shop/auth/signin",
       { email, password },

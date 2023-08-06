@@ -3,7 +3,7 @@ import axios from "axios";
 // apis
 import { IUpdateTodo } from "types";
 
-export const updateTodo = ({
+export const updateTodo = async ({
   id,
   todo,
   isCompleted,
@@ -12,7 +12,7 @@ export const updateTodo = ({
   list,
   setList,
 }: IUpdateTodo) => {
-  axios
+  await axios
     .put(
       `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
       { todo, isCompleted },
