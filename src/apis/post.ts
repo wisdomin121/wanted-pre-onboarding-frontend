@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // types
-import { ICreateTodo } from "types";
+import { ICreateTodo, ISignUpIn } from "types";
 
 export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
   axios
@@ -20,4 +20,33 @@ export const createTodo = ({ todo, setTodo, list, setList }: ICreateTodo) => {
       setList([...list, res.data]);
     })
     .catch((err) => console.error(err));
+};
+
+export const handleSignUp = ({ email, password }: ISignUpIn) => {
+  axios
+    .post(
+      "/auth/signup",
+      { email, password },
+      { headers: { "Content-Type": `application/json` } }
+    )
+    .then(() => {
+      window.location.href = "/signin";
+    })
+    .catch((err) => console.error(err));
+};
+
+export const handleSignIn = ({ email, password }: ISignUpIn) => {
+  axios
+    .post(
+      "/auth/signin",
+      { email, password },
+      { headers: { "Content-Type": `application/json` } }
+    )
+    .then((res) => {
+      localStorage.setItem("access_token", res.data.access_token);
+      window.location.href = "/todo";
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };

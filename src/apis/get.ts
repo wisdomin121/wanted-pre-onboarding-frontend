@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getTodos = (
-  setList: React.Dispatch<React.SetStateAction<any[]>>,
-  setCheckedId?: React.Dispatch<React.SetStateAction<number[]>>
-) => {
+// apis
+import { IGetTodos } from "types";
+
+export const getTodos = ({ setList, setCheckedId }: IGetTodos) => {
   axios
     .get("/todos", {
       headers: {

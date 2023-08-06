@@ -15,7 +15,7 @@ const TodoPage = () => {
   const [list, setList] = useState<any[]>([]);
   const [checkedId, setCheckedId] = useState<number[]>([]);
 
-  // access_token 없으면 리다이렉트
+  // 리다이렉트
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
       navigate("/signin");
@@ -25,7 +25,7 @@ const TodoPage = () => {
   // 페이지 로드시 저장되어 있는 투두리스트 불러오기
   // 이미 체크 되어 있는 투두 checkedId로 분리
   useEffect(() => {
-    getTodos(setList, setCheckedId);
+    getTodos({ setList, setCheckedId });
   }, []);
 
   return (

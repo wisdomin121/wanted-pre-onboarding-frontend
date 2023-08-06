@@ -1,10 +1,7 @@
 import axios from "axios";
 
-interface IDeleteTodo {
-  id: number;
-  list: any[];
-  setList: React.Dispatch<React.SetStateAction<any[]>>;
-}
+// apis
+import { IDeleteTodo } from "types";
 
 export const deleteTodo = ({ id, list, setList }: IDeleteTodo) => {
   axios

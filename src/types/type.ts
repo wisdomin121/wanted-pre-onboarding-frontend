@@ -1,10 +1,4 @@
-export interface ICreateTodo {
-  todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>;
-  list: any[];
-  setList: React.Dispatch<React.SetStateAction<any[]>>;
-}
-
+// Li 컴포넌트 관련
 export interface ILi {
   text: string;
   _checked: boolean;
@@ -37,4 +31,38 @@ export interface ICheckTodo {
   setList: React.Dispatch<React.SetStateAction<any[]>>;
   checkedId: number[];
   setCheckedId: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+// apis 관련
+export interface ISignUpIn {
+  email: string;
+  password: string;
+}
+
+export interface IGetTodos {
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
+  setCheckedId?: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+export interface ICreateTodo {
+  todo: string;
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
+  list: any[];
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
+}
+
+export interface IUpdateTodo {
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+  checkedId?: number[];
+  setCheckedId?: React.Dispatch<React.SetStateAction<number[]>>;
+  list?: any[];
+  setList?: React.Dispatch<React.SetStateAction<any[]>>;
+}
+
+export interface IDeleteTodo {
+  id: number;
+  list: any[];
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
 }

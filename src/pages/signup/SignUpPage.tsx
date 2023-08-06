@@ -1,28 +1,20 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 // components
 import { Button, Input } from "components";
 
+// apis
+import { handleSignUp } from "apis";
+
 const SignUpPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    axios
-      .post(
-        "/auth/signup",
-        { email, password },
-        { headers: { "Content-Type": `application/json` } }
-      )
-      .then(() => navigate("/signin"))
-      .catch((err) => console.error(err));
-  };
-
+  // 리다이렉트
   useEffect(() => {
     if (localStorage.getItem("access_token")) {
       navigate("/todo");
@@ -38,7 +30,7 @@ const SignUpPage = () => {
         setValue={setEmail}
       />
       <Input
-        dataTestid="email-input"
+        dataTestid="password-input"
         _type="password"
         _placeholder="비밀번호"
         _value={password}
@@ -48,7 +40,9 @@ const SignUpPage = () => {
         dataTestid="signup-button"
         text="회원가입"
         _disabled={!email.includes("@") || password.length < 8}
-        _onClick={handleSubmit}
+        _onClick={() => {
+          handleSignUp({ email, password });
+        }}
       />
     </SignUpWrapper>
   );

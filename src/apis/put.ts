@@ -1,14 +1,7 @@
 import axios from "axios";
 
-interface IUpdateTodo {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  checkedId?: number[];
-  setCheckedId?: React.Dispatch<React.SetStateAction<number[]>>;
-  list?: any[];
-  setList?: React.Dispatch<React.SetStateAction<any[]>>;
-}
+// apis
+import { IUpdateTodo } from "types";
 
 export const updateTodo = ({
   id,
@@ -31,6 +24,7 @@ export const updateTodo = ({
       }
     )
     .then((res) => {
+      // 체크 관련 로직
       if (checkedId != null && setCheckedId != null) {
         if (!checkedId.includes(res.data.id)) {
           setCheckedId([...checkedId, res.data.id]);
@@ -39,6 +33,7 @@ export const updateTodo = ({
         }
       }
 
+      // 수정 관련 로직
       if (list != null && setList != null) {
         const newList = [...list].map((v: { id: number }) => {
           if (v.id === res.data.id) {
